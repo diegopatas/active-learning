@@ -4,44 +4,36 @@ This program shows a file's content and gives the option to erase and/or insert 
 
 from sys import argv
 
-# FUNCTIONS
-def erase_content(filename):
-    """Erase the content of a file."""
-    open_op = open(filename, 'w')
-    open_op.truncate()
-    open_op.close()
+# Functions
+def insert_line(file_name):
+    """Insert lines to a file."""
+    context = open(file_name, 'a')
+    while True:
+        resp = input("Do you want to insert a line? [y]es or [n]o?: ")
+        if resp.lower() == 'n':
+            break
+        else:
+            line = input("Type what you want to insert:\n")
+            context.write(f"{line}\n")
+    context.close()
 
-def write_content(filename):
-    """Insert a content in an empty file."""
-    open_op = open(filename, 'w')
-    insert_line = input("Insert a line: ")
-    open_op.write(f"{insert_line}\n")
-    open_op.close()
+def content_printing(file_name):
+    """Print a file's content."""
+    content_print = open(file_name, 'r')
+    print(f"Now, the new file's content is:\n {content_print.read()}")
+    content_print.close()
 
-def show_content(filename):
-    """Print a file content."""
-    open_op = open(filename)
-    print(open_op)
-    open_op.close()
-
-
-# MAIN PROGRAM
+# Main program
 script, filename = argv
 
-print(f"Welcome! This is the current content of the file: "
-      f"\n{show_content(filename)}")
-
-resp = input("Do you want to erase the content? [Y]es or [N]o?")
-
-if resp.lower() == 'n':
-    erase_content(filename)
-
-while True:
-    resp = input("Do you want to insert a line to the file? [Y]es or [N]o")
-    if resp.lower() == 'n':
-        break
-    else:
-        write_content(filename)
-
-print(f"The final content of the file is: "
-      f"\n{show_content(filename)}.")
+print(f"Welcome to the 'Text-Insertion Script'!"
+        f"What do you want to do?")
+option = input("Do you want to [1] erase the file or [2] insert lines? ")
+if option == '1':
+    option_erase = open(filename, 'w')
+    option_erase.close()
+    print("The file was erased!\n See you!")
+else:
+    insert_line(filename)
+    content_printing(filename)
+    print("See you!")
