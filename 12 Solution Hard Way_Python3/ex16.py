@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 This program shows a file's content and gives the option to erase and/or insert new lines.
 """
