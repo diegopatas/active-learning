@@ -1,9 +1,5 @@
 #include <stdio.h>
 
-// in: c
-// out: type of the char
-
-
 // main program
 int main(void){
     // input
@@ -12,23 +8,24 @@ int main(void){
     char cht; // chartyped
     scanf("%c", &cht);
 
-    if(cht >= 65 && cht <= 90){
-        printf("You entered: %c\n", cht);
-        printf("\tit is in Uppercase!");
-    }
+    // 33 - 126
+    
+    if(cht >= 33 && cht <= 126){
+        if((cht >= 48 && cht <= 57) || (cht >= 65 && cht <= 90) || (cht >= 97 && cht <= 122)){
+            if(cht >= 48 && cht <= 57){
+                printf("You entered '%c', which is a digit!", cht);
+            }else if(cht >= 65 && cht <= 90){
+                printf("You entered '%c', which is a Uppercase character!", cht);
+            }else if(cht >= 97 && cht <=122){
+                printf("You entered '%c', which is a Lowercase character", cht);
+            }
+        }
+        else {
+            printf("You entered '%c' which is symbol!", cht);
+        }
 
-    if(cht >= 48 && cht <= 57){
-        printf("You entered: %c\n", cht);
-        printf("\tit is a digit!");
     }
-
-    if(cht >= 97 && cht <= 122){
-        printf("You entered: %c\n", cht);
-        printf("\tit is in Lowercase!");
-    }
-
-    if((cht >= 33 && cht <= 47) || (cht >= 58 && cht <= 64) || (cht >= 91 && cht <= 96) || (cht >= 123 && cht <= 126)){
-        printf("You entered: %c\n", cht);
-        printf("\tit is a symbol!");
+    else{
+        printf("You entered a invalid character. Please try again.");
     }
 }
